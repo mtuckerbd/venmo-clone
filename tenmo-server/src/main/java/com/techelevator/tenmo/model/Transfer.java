@@ -1,5 +1,9 @@
 package com.techelevator.tenmo.model;
 
+import com.techelevator.tenmo.dao.JdbcAccountDao;
+
+import javax.validation.constraints.DecimalMax;
+import javax.validation.constraints.DecimalMin;
 import java.math.BigDecimal;
 
 public class Transfer {
@@ -7,6 +11,7 @@ public class Transfer {
     private int transferId;
     private int transferType;
     private int statusId;
+    @DecimalMin(value = "0.009", message = "You must transfer more that $0.00.")
     private int transferFromId;
     private int transferToId;
     private BigDecimal transferAmount;

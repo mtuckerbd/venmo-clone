@@ -68,6 +68,17 @@ public class ConsoleService {
         }
     }
 
+    public int promptForAccountNumber(String prompt) {
+        System.out.print(prompt);
+        while (true) {
+            try {
+                return Integer.parseInt(scanner.nextLine());
+            } catch (NumberFormatException e) {
+                System.out.println("Please enter your account number.");
+            }
+        }
+    }
+
     public BigDecimal promptForBigDecimal(String prompt) {
         System.out.print(prompt);
         while (true) {

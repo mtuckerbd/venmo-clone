@@ -1,5 +1,6 @@
 package com.techelevator.tenmo.dao;
 
+import com.techelevator.tenmo.exception.TransferException;
 import com.techelevator.tenmo.model.Transfer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -18,7 +19,7 @@ public class JdbcTransferDao implements TransferDao {
     private JdbcTemplate jdbcTemplate;
 
 //    @Override
-//    public Transfer createTransfer(Transfer data) {
+//    public Transfer createTransfer(Transfer data) throws TransferException {
 //        JdbcAccountDao accountDao = new JdbcAccountDao();
 //        BigDecimal balance = accountDao.getBalance(data.getTransferFromId());
 //        String sql = "INSERT INTO transfer (transfer_type_id, transfer_status_id, account_from, account_to, amount) VALUES (?, ?, ?, ?, ?) RETURNING transfer_id;";
@@ -35,7 +36,7 @@ public class JdbcTransferDao implements TransferDao {
 //            jdbcTemplate.update(sql3, data.getTransferAmount(), data.getTransferToId());
 //            return getTransfersById(id);
 //        } else {
-//            return getTransfersById(id);
+//            throw new TransferException();
 //        }
 //    }
 

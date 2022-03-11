@@ -1,5 +1,6 @@
 package com.techelevator.tenmo.dao;
 
+import com.techelevator.tenmo.exception.TransferException;
 import com.techelevator.tenmo.model.Account;
 import com.techelevator.tenmo.model.Transfer;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,9 +17,9 @@ public class JdbcAccountDao implements AccountDao{
     private JdbcTemplate jdbcTemplate;
 
     @Override
-    public Account getAccount(int accountId) {
-        String sql = "SELECT * FROM account WHERE account_id = ?;";
-        SqlRowSet resultSet = jdbcTemplate.queryForRowSet(sql, accountId);
+    public Account getAccount(int userId) {
+        String sql = "SELECT * FROM account WHERE user_id = ?;";
+        SqlRowSet resultSet = jdbcTemplate.queryForRowSet(sql, userId);
 
         Account result = new Account();
         if (resultSet.next()) {
@@ -30,9 +31,9 @@ public class JdbcAccountDao implements AccountDao{
         return result;
     }
 
-    public BigDecimal getBalance(int accountId) {
-        String sql = "SELECT balance FROM account WHERE account_id = ?;";
-        BigDecimal balance = jdbcTemplate.queryForObject(sql, BigDecimal.class, accountId);
+    public BigDecimal getBalance(int userId) {
+        String sql = "SELECT balance FROM account WHERE user_id = ?;";
+        BigDecimal balance = jdbcTemplate.queryForObject(sql, BigDecimal.class, userId);
 
         return balance;
     }
