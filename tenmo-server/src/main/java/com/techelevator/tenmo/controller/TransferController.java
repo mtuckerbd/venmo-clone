@@ -31,8 +31,8 @@ public class TransferController {
     @RequestMapping(path = "", method = RequestMethod.POST)
     public Transfer createTransfer(@Valid @RequestBody Transfer data) throws TransferException {
         if (accountDao.getBalance(data.getTransferFromId()).compareTo(data.getTransferAmount()) <= 0) {
-            throw new TransferException();
-        } return transferDao.createTransfer(data);
+           throw new TransferException();
+       } return transferDao.createTransfer(data);
     }
 
     @RequestMapping(path = "/{transferId}", method = RequestMethod.GET)
